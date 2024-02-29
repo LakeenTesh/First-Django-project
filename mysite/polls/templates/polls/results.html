@@ -1,0 +1,24 @@
+  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГОЛОСОВАНИЕ</title>
+</head>
+
+
+<h1 style="color: green;" > {{ question.question_text }}</h1>
+
+<ul style="color: green;">
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Голосовать снова?</a>
+</html>
